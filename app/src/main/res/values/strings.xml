@@ -7,4 +7,7 @@
     <string name="password">Пароль</string>
     <string name="enter">Войти</string>
     <string name="text_error">* Логин или пароль введены неверно</string>
+    <string name="pay">Платежи</string>
+    <string name="amount">Сумма</string>
+    <string name="create">Платеж создан</string>
 </resources>

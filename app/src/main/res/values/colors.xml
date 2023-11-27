@@ -12,4 +12,6 @@
     <color name="input_placeholdrer_text">#A9ABB7</color>
     <color name="accent_dark_primary">#0D72FF</color>
     <color name="color_error">#C50B0B</color>
+    <color name="color_accent_title">#FFA800</color>
+    <color name="color_input">#828796</color>
 </resources>
