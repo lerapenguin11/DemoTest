@@ -16,12 +16,9 @@ class UserViewModel(
 
     private val _token = MutableLiveData<Token?>()
     val token: LiveData<Token?> get() = _token
-
+    private var _checkToken = MutableLiveData<Boolean>()
     fun login(login: String, password: String) {
         viewModelScope.launch {
-            /*
-            val token = getLoginUseCase.invoke(user)
-            _token.value = token*/
             val user = User(login, password)
             when (val tokenResult = getLoginUseCase.invoke(user)) {
                 is ResultTest.Success -> {
@@ -29,10 +26,17 @@ class UserViewModel(
                 }
 
                 is ResultTest.Error -> {
-                    //_errorHotel.postValue(tokenResult.exception.message)
                     _token.value = null
                 }
             }
+        }
+    }
+
+    fun checkToken() : Boolean{
+        if (_token.value == null){
+            return false
+        } else{
+            return true
         }
     }
 }
