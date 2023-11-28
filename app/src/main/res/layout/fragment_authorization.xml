@@ -76,6 +76,7 @@
             android:text="@string/enter"
             android:textAllCaps="false"
             android:textSize="16sp"
+            android:textColor="@color/white"
             android:fontFamily="@font/montserrat_medium"
             style="?android:attr/borderlessButtonStyle"
             android:foreground="?android:attr/selectableItemBackground"
