@@ -16,7 +16,8 @@ class PaymentsRemoteSourceImpl(
             try {
                 val response = service.getPayments(token = token)
                 if (response.isSuccessful) {
-                    return@withContext ResultTest.Success(mapper.toVolumePayments(response.body()!!))
+
+                    return@withContext ResultTest.Success(mapper.toVolumePaymentsCorrectData(response.body()!!))
                 } else {
                     return@withContext ResultTest.Error(Exception(response.message()))
                 }

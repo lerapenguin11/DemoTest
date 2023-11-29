@@ -16,6 +16,9 @@ class PaymentsViewModel(
     private val _payments = MutableLiveData<Payments?>()
     val payments: LiveData<Payments?> get() = _payments
 
+    private val _errorPayments = MutableLiveData<String>()
+    val errorPayments: LiveData<String> = _errorPayments
+
     fun getPayments(token : String) {
         viewModelScope.launch {
             when (val tokenResult = getPaymentsListUseCase.invoke(token = token)) {
@@ -24,7 +27,7 @@ class PaymentsViewModel(
                 }
 
                 is ResultTest.Error -> {
-                    _payments.value = null
+                    _errorPayments.postValue(tokenResult.exception.message)
                 }
             }
         }

@@ -69,5 +69,5 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"
     implementation "io.insert-koin:koin-core:$koin_version"
 
-    implementation 'com.google.android.flexbox:flexbox:3.0.0'
+    implementation "androidx.security:security-crypto:1.0.0-alpha02"
 }

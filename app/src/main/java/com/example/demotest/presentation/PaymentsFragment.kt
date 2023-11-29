@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.example.demotest.R
 import com.example.demotest.databinding.FragmentAuthorizationBinding
 import com.example.demotest.databinding.FragmentPaymentsBinding
+import com.example.demotest.presentation.adapter.PaymentsAdapter
 import com.example.demotest.viewmodel.PaymentsViewModel
 import com.example.demotest.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,6 +27,7 @@ class PaymentsFragment : Fragment() {
     private var _binding : FragmentPaymentsBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<PaymentsViewModel>()
+    private lateinit var adapter : PaymentsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +42,21 @@ class PaymentsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPaymentsBinding.inflate(inflater, container, false)
-
         viewModel.getPayments("7b7c0a690bee2e8d90512ed1b57e19f0")
+        setRecyclerViewPayment()
+
+
 
         return binding.root
+    }
+
+    private fun setRecyclerViewPayment() {
+        adapter = PaymentsAdapter()
+        viewModel.payments.observe(viewLifecycleOwner, Observer {pay ->
+            adapter.submitList(pay?.response)
+        })
+        binding.rvPay.adapter = adapter
+        println("ERROR: ${viewModel.errorPayments.value}")
     }
 
     companion object {

@@ -41,7 +41,11 @@ class AuthorizationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAuthorizationBinding.inflate(inflater, container, false)
+        clickBtAuth()
+        return binding.root
+    }
 
+    private fun clickBtAuth() {
         binding.btAuth.setOnClickListener {
             val login = binding.etLogin.text.toString()
             val password = binding.etPassword.text.toString()
@@ -50,8 +54,6 @@ class AuthorizationFragment : Fragment() {
             viewModel.login(login, password)
             isValidToken()
         }
-
-        return binding.root
     }
 
     private fun isValidToken() {
