@@ -8,7 +8,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 
 class TokenViewModel(application: Application) : AndroidViewModel(application) {
-    val codeSher : SharedPreferences = application.getSharedPreferences(PREF_PROFILE, Context.MODE_PRIVATE)
+    var codeSher : SharedPreferences = application.getSharedPreferences(PREF_PROFILE, Context.MODE_PRIVATE)
 
     fun encryptToken(context: Context, token: String?) {
         val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)

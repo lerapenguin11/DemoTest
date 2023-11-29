@@ -36,7 +36,7 @@ class PaymentsFragment : Fragment() {
 
     private fun clickBtLogout() {
         binding.icExit.setOnClickListener {
-            tokenViewModel.codeSher.getInt(PREF_CODE, CODE)
+            tokenViewModel.getAuth(CODE)
             tokenViewModel.deleteToken(requireContext())
             launchFragment(AuthorizationFragment())
         }

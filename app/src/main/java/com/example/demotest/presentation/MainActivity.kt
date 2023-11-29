@@ -2,6 +2,8 @@ package com.example.demotest.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
+import com.example.demotest.R
 import com.example.demotest.databinding.ActivityMainBinding
 import com.example.demotest.presentation.AuthorizationFragment
 import com.example.demotest.presentation.PaymentsFragment
@@ -23,6 +25,17 @@ class MainActivity : AppCompatActivity() {
             replaceFragmentMain(PaymentsFragment())
         } else{
             replaceFragmentMain(AuthorizationFragment())
+        }
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+    }
+
+    override fun onBackPressed() {
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.main_layout)
+
+        if (currentFragment is PaymentsFragment || currentFragment is AuthorizationFragment) {
+            finish()
+        } else {
+            super.onBackPressed()
         }
     }
 
