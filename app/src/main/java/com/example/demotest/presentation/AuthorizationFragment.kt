@@ -13,28 +13,15 @@ import androidx.lifecycle.Observer
 import com.example.demotest.R
 import com.example.demotest.databinding.FragmentAuthorizationBinding
 import com.example.demotest.utilits.replaceFragmentMain
+import com.example.demotest.viewmodel.AuthorizationViewModel
 import com.example.demotest.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class AuthorizationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     private var _binding : FragmentAuthorizationBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModel<UserViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val userViewModel by viewModel<UserViewModel>()
+    private val tokenViewModel by viewModel<AuthorizationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,15 +38,18 @@ class AuthorizationFragment : Fragment() {
             val password = binding.etPassword.text.toString()
             editTextChangedListener(binding.etLogin)
             editTextChangedListener(binding.etPassword)
-            viewModel.login(login, password)
+            userViewModel.login(login, password)
             isValidToken()
         }
     }
 
     private fun isValidToken() {
-        viewModel.token.observe(viewLifecycleOwner, Observer {
+        userViewModel.token.observe(viewLifecycleOwner, Observer {
             if (it?.response?.token != null){
                 binding.textError.visibility = View.INVISIBLE
+                tokenViewModel.encryptToken(
+                    requireContext(),
+                    userViewModel.token.value?.response?.token)
                 replaceFragmentMain(PaymentsFragment())
             } else{
                 binding.textError.visibility = View.VISIBLE
@@ -95,16 +85,5 @@ class AuthorizationFragment : Fragment() {
                     requireContext(),
                     R.drawable.bg_edittext_error)
         }
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AuthorizationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
