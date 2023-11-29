@@ -1,16 +1,17 @@
 package com.example.data.api
 
+import com.example.data.api.model.PaymentsApiResponse
 import com.example.data.api.model.TokenResponse
 import com.example.data.api.model.UserRequest
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface TestApi {
-    //https://easypay.world/api-test/login?app-key=12345&v=1
-
     @Headers("app-key: 12345", "v: 1")
     @POST("login")
     suspend fun getLogin(@Body requestBody: UserRequest): Response<TokenResponse>
+
+    @Headers("app-key: 12345", "v: 1")
+    @GET("payments")
+    suspend fun getPayments( @Header("token") token: String): Response<PaymentsApiResponse>
 }

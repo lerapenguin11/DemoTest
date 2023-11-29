@@ -16,7 +16,7 @@ class UserViewModel(
 
     private val _token = MutableLiveData<Token?>()
     val token: LiveData<Token?> get() = _token
-    private var _checkToken = MutableLiveData<Boolean>()
+
     fun login(login: String, password: String) {
         viewModelScope.launch {
             val user = User(login, password)
@@ -29,14 +29,6 @@ class UserViewModel(
                     _token.value = null
                 }
             }
-        }
-    }
-
-    fun checkToken() : Boolean{
-        if (_token.value == null){
-            return false
-        } else{
-            return true
         }
     }
 }

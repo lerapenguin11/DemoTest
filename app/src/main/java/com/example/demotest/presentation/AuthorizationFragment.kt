@@ -57,6 +57,7 @@ class AuthorizationFragment : Fragment() {
     private fun isValidToken() {
         viewModel.token.observe(viewLifecycleOwner, Observer {
             if (it?.response?.token != null){
+                binding.textError.visibility = View.INVISIBLE
                 replaceFragmentMain(PaymentsFragment())
             } else{
                 binding.textError.visibility = View.VISIBLE
@@ -67,17 +68,13 @@ class AuthorizationFragment : Fragment() {
     private fun editTextChangedListener(editText: EditText) {
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                if (s.toString().trim { it <= ' ' }. length == 0) {
-                    isValidEditText(editText)
-                }
+                isValidEditText(editText)
             }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 isValidEditText(editText)
             }
             override fun afterTextChanged(s: Editable) {
-                if (s.toString().trim { it <= ' ' }. length == 0) {
-                    isValidEditText(editText)
-                }
+                isValidEditText(editText)
             }
         })
     }
