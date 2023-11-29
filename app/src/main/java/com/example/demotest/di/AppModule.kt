@@ -1,6 +1,6 @@
 package com.example.demotest.di
 
-import com.example.demotest.viewmodel.AuthorizationViewModel
+import com.example.demotest.viewmodel.TokenViewModel
 import com.example.demotest.viewmodel.PaymentsViewModel
 import com.example.demotest.viewmodel.UserViewModel
 import com.example.domain.usecase.GetLoginUseCase
@@ -21,7 +21,7 @@ val appModule = module {
         )
     }
 
-    viewModel<AuthorizationViewModel> {
-        AuthorizationViewModel()
+    viewModel<TokenViewModel> {
+        TokenViewModel(get())
     }
 }

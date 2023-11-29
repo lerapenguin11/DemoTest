@@ -12,8 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.example.demotest.R
 import com.example.demotest.databinding.FragmentAuthorizationBinding
-import com.example.demotest.utilits.replaceFragmentMain
-import com.example.demotest.viewmodel.AuthorizationViewModel
+import com.example.demotest.viewmodel.TokenViewModel
 import com.example.demotest.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,7 +20,7 @@ class AuthorizationFragment : Fragment() {
     private var _binding : FragmentAuthorizationBinding? = null
     private val binding get() = _binding!!
     private val userViewModel by viewModel<UserViewModel>()
-    private val tokenViewModel by viewModel<AuthorizationViewModel>()
+    private val tokenViewModel by viewModel<TokenViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,11 +49,20 @@ class AuthorizationFragment : Fragment() {
                 tokenViewModel.encryptToken(
                     requireContext(),
                     userViewModel.token.value?.response?.token)
-                replaceFragmentMain(PaymentsFragment())
+                tokenViewModel.getAuth(CODE)
+                launchFragment(PaymentsFragment())
             } else{
                 binding.textError.visibility = View.VISIBLE
             }
         })
+    }
+
+    private fun launchFragment(fragment: Fragment){
+        fragmentManager?.popBackStack()
+        fragmentManager?.beginTransaction()
+            ?.replace(R.id.main_layout, fragment)
+            ?.addToBackStack(null)
+            ?.commit()
     }
 
     private fun editTextChangedListener(editText: EditText) {
@@ -85,5 +93,9 @@ class AuthorizationFragment : Fragment() {
                     requireContext(),
                     R.drawable.bg_edittext_error)
         }
+    }
+
+    companion object{
+        private const val CODE = 1
     }
 }
