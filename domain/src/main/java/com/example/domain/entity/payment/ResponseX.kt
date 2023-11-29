@@ -1,7 +1,7 @@
 package com.example.domain.entity.payment
 
 data class ResponseX(
-    val amount: Double?,
+    val amount: String?,
     val created: String?,
     val id: Int?,
     val title: String?

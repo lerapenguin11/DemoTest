@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.example.data.api.model.payment.PaymentsApiResponse
 import com.example.domain.entity.payment.Payments
 import com.example.domain.entity.payment.ResponseX
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,7 +25,7 @@ class PaymentsApiResponseMapper {
             val id = i.id
             val title = i.title
             val payments = ResponseX(
-                amount = amount,
+                amount = amount?.let { formatNumber(it) },
                 created = created,
                 id = id,
                 title = title
@@ -39,7 +40,7 @@ class PaymentsApiResponseMapper {
         for (i in resp.response){
             if (i.amount is Double && i.created is Long) {
                 val responseX = ResponseX(
-                    amount = i.amount,
+                    amount = formatNumber(i.amount),
                     created = toVolumeCreateDate(i.created),
                     id = i.id,
                     title = i.title)
@@ -57,10 +58,16 @@ class PaymentsApiResponseMapper {
         return date?.let { format.format(it) }
     }
 
+    private fun formatNumber(number: Double): String {
+        val decimalFormat = DecimalFormat(DECIMAL_FORMAT)
+        return decimalFormat.format(number)
+    }
+
     companion object{
         private const val DATE_FORMAT = "dd.MM.yyyy HH:mm:ss"
         private const val CONST_STRING = "Нет данных"
         private const val CONST_DOUBLE = 0.0
         private const val TIME_STAMP = 1000
+        private const val DECIMAL_FORMAT = "#,##0.00"
     }
 }
