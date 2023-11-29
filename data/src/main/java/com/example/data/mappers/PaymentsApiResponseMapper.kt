@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class PaymentsApiResponseMapper {
-    fun toVolumePaymentsTransformationData(resp: PaymentsApiResponse): Payments {
+    fun toPaymentsTransformationData(resp: PaymentsApiResponse): Payments {
         val paymentsList = arrayListOf<ResponseX>()
         for (i in resp.response) {
             val amount = when (val amountValue = i.amount) {
@@ -35,7 +35,7 @@ class PaymentsApiResponseMapper {
         return Payments(response = paymentsList, success = resp.success)
     }
 
-    fun toVolumePaymentsCorrectData(resp: PaymentsApiResponse): Payments {
+    fun toPaymentsCorrectData(resp: PaymentsApiResponse): Payments {
         val paymentsList = arrayListOf<ResponseX>()
         for (i in resp.response){
             if (i.amount is Double && i.created is Long) {
