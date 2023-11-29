@@ -1,23 +1,24 @@
-package repository
+package repository.userRepository
 
 import com.example.data.api.TestApi
-import com.example.data.mappers.PaymentsApiResponseMapper
+import com.example.data.mappers.UserApiResponseMapper
 import com.example.domain.common.ResultTest
-import com.example.domain.entity.Payments
+import com.example.domain.entity.user.Token
+import com.example.domain.entity.user.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class PaymentsRemoteSourceImpl(
+class UserRemoteSourceImpl(
     private val service : TestApi,
-    private val mapper : PaymentsApiResponseMapper
-) : PaymentsRemoteSource{
-    override suspend fun getPaymentsList(token: String): ResultTest<Payments> =
+    private val mapper: UserApiResponseMapper
+) : UserRemoteSource {
+
+    override suspend fun getLogin(user: User): ResultTest<Token> =
         withContext(Dispatchers.IO) {
             try {
-                val response = service.getPayments(token = token)
+                val response = service.getLogin(mapper.toVolumeUserRequest(user))
                 if (response.isSuccessful) {
-
-                    return@withContext ResultTest.Success(mapper.toVolumePaymentsCorrectData(response.body()!!))
+                    return@withContext ResultTest.Success(mapper.toVolumeToken(response.body()!!))
                 } else {
                     return@withContext ResultTest.Error(Exception(response.message()))
                 }

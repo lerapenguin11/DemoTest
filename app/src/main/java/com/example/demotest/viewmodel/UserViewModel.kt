@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.common.ResultTest
-import com.example.domain.entity.Token
-import com.example.domain.entity.User
+import com.example.domain.entity.user.Token
+import com.example.domain.entity.user.User
 import com.example.domain.usecase.GetLoginUseCase
 import kotlinx.coroutines.launch
 

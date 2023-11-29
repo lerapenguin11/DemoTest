@@ -1,8 +1,8 @@
-package repository
+package repository.userRepository
 
 import com.example.domain.common.ResultTest
-import com.example.domain.entity.Token
-import com.example.domain.entity.User
+import com.example.domain.entity.user.Token
+import com.example.domain.entity.user.User
 
 interface UserRemoteSource {
 

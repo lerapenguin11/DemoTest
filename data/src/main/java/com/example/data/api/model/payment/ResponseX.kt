@@ -1,4 +1,4 @@
-package com.example.data.api.model
+package com.example.data.api.model.payment
 
 data class ResponseX(
     val amount: Any?,

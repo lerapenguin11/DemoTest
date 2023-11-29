@@ -1,8 +1,8 @@
 package com.example.data.api
 
-import com.example.data.api.model.PaymentsApiResponse
-import com.example.data.api.model.TokenResponse
-import com.example.data.api.model.UserRequest
+import com.example.data.api.model.payment.PaymentsApiResponse
+import com.example.data.api.model.user.TokenResponse
+import com.example.data.api.model.user.UserRequest
 import retrofit2.Response
 import retrofit2.http.*
 

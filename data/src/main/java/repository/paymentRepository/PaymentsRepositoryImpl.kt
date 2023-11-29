@@ -1,7 +1,7 @@
-package repository
+package repository.paymentRepository
 
 import com.example.domain.common.ResultTest
-import com.example.domain.entity.Payments
+import com.example.domain.entity.payment.Payments
 import com.example.domain.repository.PaymentsRepository
 
 class PaymentsRepositoryImpl(

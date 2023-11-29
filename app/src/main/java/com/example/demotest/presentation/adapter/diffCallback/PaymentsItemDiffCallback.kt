@@ -1,7 +1,7 @@
 package com.example.demotest.presentation.adapter.diffCallback
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.domain.entity.ResponseX
+import com.example.domain.entity.payment.ResponseX
 
 class PaymentsItemDiffCallback : DiffUtil.ItemCallback<ResponseX>() {
     override fun areItemsTheSame(oldItem: ResponseX, newItem: ResponseX): Boolean {

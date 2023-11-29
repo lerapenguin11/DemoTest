@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.demotest.R
 import com.example.demotest.presentation.adapter.diffCallback.PaymentsItemDiffCallback
 import com.example.demotest.presentation.adapter.viewholder.PaymentsViewHolder
-import com.example.domain.entity.ResponseX
+import com.example.domain.entity.payment.ResponseX
 
 class PaymentsAdapter : ListAdapter<ResponseX, PaymentsViewHolder>(
     PaymentsItemDiffCallback())

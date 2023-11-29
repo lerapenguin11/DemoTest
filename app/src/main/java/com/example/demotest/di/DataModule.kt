@@ -7,7 +7,12 @@ import com.example.demotest.utilits.URL
 import com.example.domain.repository.PaymentsRepository
 import com.example.domain.repository.UserRepository
 import org.koin.dsl.module
-import repository.*
+import repository.paymentRepository.PaymentsRemoteSource
+import repository.paymentRepository.PaymentsRemoteSourceImpl
+import repository.paymentRepository.PaymentsRepositoryImpl
+import repository.userRepository.UserRemoteSource
+import repository.userRepository.UserRemoteSourceImpl
+import repository.userRepository.UserRepositoryImpl
 
 val dataModule = module {
     val networkModule by lazy {

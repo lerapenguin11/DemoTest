@@ -1,4 +1,4 @@
-package com.example.domain.entity
+package com.example.domain.entity.user
 
 data class Token(
     val response: Response,

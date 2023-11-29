@@ -1,10 +1,10 @@
 package com.example.data.mappers
 
-import com.example.data.api.model.TokenResponse
-import com.example.data.api.model.UserRequest
-import com.example.domain.entity.Response
-import com.example.domain.entity.Token
-import com.example.domain.entity.User
+import com.example.data.api.model.user.TokenResponse
+import com.example.data.api.model.user.UserRequest
+import com.example.domain.entity.user.Response
+import com.example.domain.entity.user.Token
+import com.example.domain.entity.user.User
 
 class UserApiResponseMapper {
 

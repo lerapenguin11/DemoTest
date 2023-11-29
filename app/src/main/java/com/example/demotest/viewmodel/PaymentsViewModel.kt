@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.common.ResultTest
-import com.example.domain.entity.Payments
+import com.example.domain.entity.payment.Payments
 import com.example.domain.usecase.GetPaymentsListUseCase
 import kotlinx.coroutines.launch
 

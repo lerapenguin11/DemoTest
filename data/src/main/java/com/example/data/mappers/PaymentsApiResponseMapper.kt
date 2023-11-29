@@ -1,9 +1,9 @@
 package com.example.data.mappers
 
 import android.annotation.SuppressLint
-import com.example.data.api.model.PaymentsApiResponse
-import com.example.domain.entity.Payments
-import com.example.domain.entity.ResponseX
+import com.example.data.api.model.payment.PaymentsApiResponse
+import com.example.domain.entity.payment.Payments
+import com.example.domain.entity.payment.ResponseX
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,7 +34,7 @@ class PaymentsApiResponseMapper {
         return Payments(response = paymentsList, success = resp.success)
     }
 
-    fun toVolumePaymentsCorrectData(resp: PaymentsApiResponse): Payments{
+    fun toVolumePaymentsCorrectData(resp: PaymentsApiResponse): Payments {
         val paymentsList = arrayListOf<ResponseX>()
         for (i in resp.response){
             if (i.amount is Double && i.created is Long) {

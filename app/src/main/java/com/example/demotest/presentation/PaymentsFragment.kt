@@ -36,8 +36,8 @@ class PaymentsFragment : Fragment() {
 
     private fun clickBtLogout() {
         binding.icExit.setOnClickListener {
-            tokenViewModel.codeSher.getInt("code", 0)
-            tokenViewModel.decryptToken(requireContext())
+            tokenViewModel.codeSher.getInt(PREF_CODE, CODE)
+            tokenViewModel.deleteToken(requireContext())
             launchFragment(AuthorizationFragment())
         }
     }
@@ -56,5 +56,10 @@ class PaymentsFragment : Fragment() {
             adapter.submitList(pay?.response)
         })
         binding.rvPay.adapter = adapter
+    }
+
+    companion object{
+        private const val CODE = 0
+        private const val PREF_CODE = "code"
     }
 }

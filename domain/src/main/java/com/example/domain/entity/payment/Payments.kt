@@ -1,4 +1,4 @@
-package com.example.domain.entity
+package com.example.domain.entity.payment
 
 data class Payments(
     val response: List<ResponseX>,

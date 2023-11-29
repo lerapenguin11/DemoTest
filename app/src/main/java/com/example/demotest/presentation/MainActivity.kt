@@ -1,4 +1,4 @@
-package com.example.demotest
+package com.example.demotest.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,11 +18,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         APP_ACTIVITY = this
-        val code = viewModel.codeSher.getInt("code", 0)
+        val code = viewModel.codeSher.getInt(PREF_CODE, CODE)
         if (code == 1){
             replaceFragmentMain(PaymentsFragment())
         } else{
             replaceFragmentMain(AuthorizationFragment())
         }
+    }
+
+    companion object{
+        private const val CODE = 0
+        private const val PREF_CODE = "code"
     }
 }
